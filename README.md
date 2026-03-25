@@ -1,24 +1,20 @@
-# Chat with PDF
+# Self-RAG Agentic AI System
 
-This repository contains a project that allows users to interact with PDF files intelligently.
-
-## Installation
-1. Clone the repository
-2. Install the required dependencies using `pip install -r requirements.txt`
-
-## Usage
-To start the project, run:
-```
-python main.py
-```
+## Overview
+The Self-RAG (Self Retrieval Augmented Generation) Agentic AI System is designed to intelligently query relevant information and generate insightful responses in a conversational manner.
 
 ## Features
-- Text extraction from PDF
-- Natural language processing
+- Intelligent information retrieval
+- Context-aware generation
 - User-friendly interface
 
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request.
+## Installation
+To install the Self-RAG Agentic AI System:
+1. Clone the repository: `git clone https://github.com/rohitnath-dev/chat-with-pdf.git`
+2. Install dependencies: `pip install -r requirements.txt`
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+## Usage
+To use the system, run the following command: `python main.py`
+
+## Contributing
+Contributions are welcome! Please submit a pull request for any changes you wish to propose.

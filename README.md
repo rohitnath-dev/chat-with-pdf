@@ -1,53 +1,162 @@
-# Self-RAG Documentation
+# Self-RAG Agentic AI System
 
-## Overview
-Self-RAG is an advanced retrieval-augmented generation system designed to enhance the performance of generative models by effectively incorporating external information repositories into the generation process.
+A self-correcting retrieval-augmented generation (RAG) system built using LangGraph that dynamically decides when to retrieve, how to refine queries, and how to generate grounded responses.
 
-## Problem Statement
-In many applications of generative models, the lack of access to real-time data limits the relevance and accuracy of the generated outputs. This project addresses the need for a system that seamlessly incorporates retrieval mechanisms to enrich generation processes.
+---
 
-## Solution Architecture
-Self-RAG integrates a retrieval component that fetches data from external sources. The architecture is composed of:
-- A retrieval module that collects relevant data points based on input prompts.
-- A generative model that combines these data points with the original input to produce coherent and relevant outputs.
+## Problem
+
+Traditional RAG systems:
+- Always retrieve (even when unnecessary)
+- Retrieve irrelevant data
+- Lack self-correction
+- Fail when initial retrieval is weak
+
+---
+
+## Solution
+
+This system introduces an **agentic decision layer** that:
+
+- Decides whether retrieval is needed  
+- Filters irrelevant documents  
+- Rewrites queries if retrieval fails  
+- Falls back to web search  
+- Generates answers using only validated context  
+
+---
+
+## Architecture
+
+![Architecture](architecture.png)
+
+---
 
 ## Workflow
-1. **Input Receiving:** The user input is received by the system.
-2. **Data Retrieval:** Relevant data is fetched from the external sources based on the input.
-3. **Data Integration:** The retrieved data is merged with the original input.
-4. **Output Generation:** The generative model processes the integrated input to produce a final output.
-5. **Feedback Loop:** The system learns from the output to improve future retrieval and generation.
+
+1. **Decide Retrieval**
+   - Determine if external data is required  
+
+2. **Direct Generation (if no retrieval)**
+   - Answer using model knowledge  
+
+3. **Retrieve Documents**
+   - From PDF / vector database  
+
+4. **Relevance Filtering**
+   - Keep only useful documents  
+
+5. **If not relevant**
+   - Rewrite query  
+   - Perform web search  
+   - Retry retrieval  
+
+6. **Generate Answer**
+   - Use only validated context  
+
+---
 
 ## Features
-- **Real-Time Data Integration:** Ability to incorporate up-to-date information from multiple sources.
-- **Enhanced Output Relevance:** Improved accuracy and contextuality of generated content.
-- **Flexibility:** Adaptable to various generative tasks and domains.
+
+- Self-RAG decision system  
+- Query rewriting loop  
+- Relevance filtering  
+- Hybrid retrieval (PDF + Web)  
+- Agentic control flow using LangGraph  
+- Reduced hallucination via structured prompts  
+
+---
 
 ## Tech Stack
-- **Backend:** Python, Flask
-- **Frontend:** React
-- **Database:** MongoDB
-- **ML Framework:** TensorFlow/PyTorch
 
-## Setup Instructions
-1. Clone the repository: `git clone https://github.com/rohitnath-dev/chat-with-pdf.git`
-2. Navigate to the project directory: `cd chat-with-pdf`
-3. Install the required dependencies: `pip install -r requirements.txt`
-4. Run the application: `python app.py`
-5. Access the application at `http://localhost:5000`.
+- Python  
+- LangGraph  
+- LangChain  
+- FAISS (vector DB)  
+- Sentence Transformers (embeddings)  
+- Tavily (web search)  
+- Ollama / OpenAI  
+
+---
+
+## Setup
+
+### 1. Clone repo
+
+```bash
+git clone https://github.com/your-username/chat-with-pdf.git
+cd chat-with-pdf
+```
+
+## 2. Install dependencies
+
+pip install -r requirements.txt
+
+## 3. Setup environment variables
+
+Create `.env` file:
+
+OPENAI_API_KEY=your_key_here  
+TAVILY_API_KEY=your_key_here  
+
+---
 
 ## Usage
-- Open the application in a web browser.
-- Input your query into the provided text field.
-- View the generated output based on real-time data retrieval.
 
-## Project Structure
-- **/app**: Contains the main application code.
-- **/models**: Holds the machine learning models.
-- **/routes**: Defines the API routes.
-- **/static**: Contains static files for the frontend.
+Run the notebook:
+
+jupyter notebook askmypdf.ipynb  
+
+Example query:
+
+"What is recursion in programming?"
+
+---
+
+## Example Flow
+
+**Input:**
+
+"Latest AI news in 2025"
+
+**System will:**
+
+- Detect need for fresh data  
+- Rewrite query  
+- Perform web search  
+- Filter relevant sources  
+- Generate grounded answer  
+
+---
 
 ## Future Improvements
-- Enhance data retrieval algorithms for better relevance.
-- Incorporate user feedback mechanisms for iterative improvements.
-- Expand the tech stack to include more generative models.
+
+- [ ] Streaming responses  
+- [ ] UI (Streamlit / Web app)  
+- [ ] Multi-document support  
+- [ ] Evaluation pipeline  
+- [ ] Fine-tuned retrieval decision model  
+
+---
+
+## Positioning
+
+This is not just a RAG system.
+
+> It is a self-correcting, agentic retrieval system that improves its own search and reasoning loop.
+
+---
+
+## Contribution
+
+Feel free to:
+
+- Open issues  
+- Suggest improvements  
+- Extend modules  
+
+---
+
+## License
+
+MIT License

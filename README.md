@@ -28,7 +28,7 @@ This system introduces an **agentic decision layer** that:
 
 ## Architecture
 
-![Architecture](aarchitecture.png)
+![Architecture](architecture.png)
 
 ---
 
